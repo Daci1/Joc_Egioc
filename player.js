@@ -10,16 +10,6 @@ export const player = (() => {
       this.position_ = new THREE.Vector3(0, 0, 0);
       this.velocity_ = 0.0;
 
-      // this.mesh_ = new THREE.Mesh(
-      //     new THREE.BoxBufferGeometry(1, 1, 1),
-      //     new THREE.MeshStandardMaterial({
-      //         color: 0x80FF80,
-      //     }),
-      // );
-      // this.mesh_.castShadow = true;
-      // this.mesh_.receiveShadow = true;
-      // params.scene.add(this.mesh_);
-
       this.playerBox_ = new THREE.Box3();
 
       this.params_ = params;

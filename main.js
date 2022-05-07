@@ -43,46 +43,24 @@ class DinoGame {
     let shadowCode = THREE.ShaderChunk.shadowmap_pars_fragment;
 
     THREE.ShaderChunk.shadowmap_pars_fragment = shadowCode;
-    // renderer
+
     this.initializeRenderer();
 
     window.addEventListener('resize', () => {
       this.OnWindowResize_();
     }, false);
 
-    const fov = 60;
-    const aspect = 1920 / 1080;
-    const near = 1.0;
-    const far = 20000.0;
-    this.camera_ = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    this.camera_.position.set(-5, 5, 10);
-    this.camera_.lookAt(8, 3, 0);
+    this.initializeCamera();
 
     this.scene_ = new THREE.Scene();
 
-    let light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
-    light.position.set(60, 100, 10);
-    light.target.position.set(40, 0, 0);
-    light.castShadow = true;
-    light.shadow.bias = -0.001;
-    light.shadow.mapSize.width = 4096;
-    light.shadow.mapSize.height = 4096;
-    light.shadow.camera.far = 200.0;
-    light.shadow.camera.near = 1.0;
-    light.shadow.camera.left = 50;
-    light.shadow.camera.right = -50;
-    light.shadow.camera.top = 50;
-    light.shadow.camera.bottom = -50;
-    this.scene_.add(light);
-
-    light = new THREE.HemisphereLight(0x202020, 0x004080, 0.6);
-    this.scene_.add(light);
+    this.initializeLight();
 
     this.scene_.background = new THREE.Color(0x808080);
     this.scene_.fog = new THREE.FogExp2(0x89b2eb, 0.00125);
 
     const ground = new THREE.Mesh(
-        new THREE.PlaneGeometry(20000, 20000, 10, 10),
+        new THREE.PlaneGeometry(22000, 22000, 10, 10),
         new THREE.MeshStandardMaterial({
             color: 0xf6f47f,
           }));
@@ -126,6 +104,36 @@ class DinoGame {
     this.threejs_.setPixelRatio(window.devicePixelRatio);
     this.threejs_.setSize(window.innerWidth, window.innerHeight);
     document.getElementById('container').appendChild(this.threejs_.domElement);
+  }
+
+  initializeCamera() {
+    const fov = 70;
+    const aspect = 1920 / 1080;
+    const near = 1.5;
+    const far = 22000.0;
+    this.camera_ = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    this.camera_.position.set(-5, 5, 10);
+    this.camera_.lookAt(8, 3, 0);
+  }
+
+  initializeLight() {
+    let light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
+    light.position.set(60, 100, 10);
+    light.target.position.set(40, 0, 0);
+    light.castShadow = true;
+    light.shadow.bias = -0.001;
+    light.shadow.mapSize.width = 4096;
+    light.shadow.mapSize.height = 4096;
+    light.shadow.camera.far = 200.0;
+    light.shadow.camera.near = 1.0;
+    light.shadow.camera.left = 50;
+    light.shadow.camera.right = -50;
+    light.shadow.camera.top = 50;
+    light.shadow.camera.bottom = -50;
+    this.scene_.add(light);
+
+    light = new THREE.HemisphereLight(0x202020, 0x004080, 0.6);
+    this.scene_.add(light);
   }
 
   OnWindowResize_() {
@@ -172,9 +180,6 @@ class DinoGame {
 
 let _APP = null;
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   _APP = new DinoGame();
-// });
 document.getElementById('startGame').onclick = () => {
   _APP = new DinoGame();
 }
