@@ -38,7 +38,7 @@ body {
 .game-over-layout {
   opacity: 0.0;
 
-  visibility: hidden;
+  /* visibility: hidden; */
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.75);
@@ -120,4 +120,10 @@ body {
   line-height: 1.55em;
   color: rgb(95, 99, 104);
   margin-top: 12px;
+}
+
+.restartButton {
+  position: absolute !important;
+  z-index: 9999 !important;
+  pointer-events: all !important;
 }

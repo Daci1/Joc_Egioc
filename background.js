@@ -86,15 +86,13 @@ export const background = (() => {
 
     LoadModel_() {
       const assets = [
-          ['SmallPalmTree.glb', 'PalmTree.png', 3],
-          ['BigPalmTree.glb', 'PalmTree.png', 5],
-          ['Skull.glb', 'Ground.png', 1],
-          ['Scorpion.glb', 'Scorpion.png', 1],
-          ['Pyramid.glb', 'Ground.png', 40],
-          ['Monument.glb', 'Ground.png', 10],
-          ['Cactus1.glb', 'Ground.png', 5],
-          ['Cactus2.glb', 'Ground.png', 5],
-          ['Cactus3.glb', 'Ground.png', 5],
+          ['Monument.glb', 'Ground.png', 15],
+          ['SmallPalmTree.glb', 'PalmTree.png', 4],
+          ['BigPalmTree.glb', 'PalmTree.png', 6],
+          ['Cactus1.glb', 'Ground.png', 10],
+          ['Cactus2.glb', 'Ground.png', 10],
+          ['Cactus3.glb', 'Ground.png', 10],
+          ['Skull.glb', 'Ground.png', 2],
       ];
       const [asset, textureName, scale] = assets[math.rand_int(0, assets.length - 1)];
 
